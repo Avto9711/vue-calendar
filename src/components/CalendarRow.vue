@@ -2,25 +2,25 @@
     <div class="m-t-md" >   
         <div class="columns">
             <div class="column right-border-gray ">
-                <CalendarTile class="has-background-white-ter "></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column right-border-gray">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column right-border-gray">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column right-border-gray">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column right-border-gray">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column right-border-gray">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
             <div class="column ">
-                <CalendarTile class="has-background-white-ter"></CalendarTile>
+                <CalendarTile ></CalendarTile>
             </div>
 
         </div>
