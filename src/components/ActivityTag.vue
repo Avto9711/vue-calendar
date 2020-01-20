@@ -48,7 +48,11 @@ export default class ActivityTag extends Vue  {
     }
 
     closeTag(){
-        console.log("Close tag pressed")
+        console.log("Close tag pressed");
+            this.$buefy.toast.open({
+            message: 'Something happened correctly!',
+            type: 'is-success'
+        })
     }
 }
 </script>
