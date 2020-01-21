@@ -31,30 +31,36 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Activity from "../Models/Activity";
 
+import { mapState } from 'vuex'
 @Component({
   components: {
     ActivityDetail: () => import("./ActivityDetail.vue"),
     ActivityTag: () => import("./ActivityTag.vue"),
     NewActivity: () => import("./NewActivity.vue")
-  }
+  },
+  computed:
+    mapState(['activities'])
+  
 })
 export default class CalendarTile extends Vue {
   @Prop() calendarNumber!: number;
   @Prop() dateId!: string;
   @Prop() isDiffMonth!: boolean;
-
+  
+  activities!:Activity[];
   constructor() {
     super();
-  }
+  } 
+  
   get tagsByDateId(){
-    return this.$store.state.activities.filter((x: Activity) => {
+    
+    return this.activities.filter((x: Activity) => {
         return x.dateId == this.dateId;
     });
   }
   get twoFirstTwoTags(){
       return this.tagsByDateId.slice(0,2);
   }
-  
  
 }
 </script>

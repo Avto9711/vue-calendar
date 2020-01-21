@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <HelloWorld />
+    <Wrapper />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Wrapper from '@/components/Wrapper.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    Wrapper
   }
 }
 </script>

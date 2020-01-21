@@ -11,7 +11,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     Calendar: ()=> import("../components/Calendar.vue")
   }
 })
-export default class HelloWorld extends Vue {
+export default class Wrapper extends Vue {
   @Prop() private msg!: string;
 
   constructor(){
