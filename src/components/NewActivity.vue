@@ -6,7 +6,7 @@
                     trap-focus
                     aria-role="dialog"
                     aria-modal>
-                    <div class="modal-card" style="width: auto">
+                    <div class="modal-card" >
                         <header class="modal-card-head">
                             <p class="modal-card-title">Add new Activity</p>
                         </header>
@@ -24,7 +24,7 @@
                                 </b-timepicker>
                             </b-field>
                         </section>
-                        <footer class="modal-card-foot">
+                        <footer class="modal-card-foot is-pulled-right">
                         <button type="is-primary" class="button"  @click="addNewActivity">Save</button>
                         <button class="button" type="button" @click="isComponentModalActive = false">Close</button>
                         </footer>
@@ -76,7 +76,10 @@ export default class NewActivity extends Vue {
 }
 </script>
 
-<style >
+<style scoped >
+    .modal-card-body{
+        overflow:initial;
+    }
     /* .height-fixed {
         height: 500px;
     } */
