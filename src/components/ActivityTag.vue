@@ -1,11 +1,11 @@
 <template>
-    <div>   
+    <div class="field">   
         <b-tag      
             :type="activityColor"
             attached
             closable
             @close="closeTag()"
-            aria-close-label="Close tag">
+            aria-close-label="Close">
             {{truncateText ? activityTitle.substring(0,15) + '... '+  '- ' +  hourFormated  : activityTitle +" - "+ hourFormated }}
         
         </b-tag>   
@@ -24,7 +24,7 @@ import {REMOVE_ACTIVITY} from "../Constants";
         },
         activityColor:{
             type:String,
-            default:"is-warning"
+            default:"is-primary"
         },
         truncateText:{
             type:Boolean,

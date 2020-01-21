@@ -10,4 +10,7 @@ export default class Activity {
         this.activityName = null;
         this.activityTime = null;
     }
+    isValid():boolean {
+        return !!this.activityName && !!this.activityTime;
+    }
 }

@@ -1,8 +1,8 @@
 <template>
   <div class="m-t-md">
     <div class="columns seven-cols is-multiline">
-      <div :key="day.dateId" v-for="day in calendarDays" class="column is-1 right-border-gray">
-        <CalendarTile v-if="day.day != 0" :calendarNumber="day.day" :dateId="day.dateId" ></CalendarTile>
+      <div :key="day.dateId" v-for="day in calendarDays" class="column is-1 border-gray">
+        <CalendarTile v-if="day.day != 0" :calendarNumber="day.day" :dateId="day.dateId" :isDiffMonth="day.isDiffMonth"></CalendarTile>
       </div>
     </div>
   </div>
@@ -21,16 +21,22 @@ export default class CalendarRow extends Vue {
   constructor() {
     super();
   }
-
+  get currentDay() {
+    return new Date().getDay();
+  }
   get calendarDays() {
     var days: any = [];
     let firstDdayNumber = this.days[0].getDay();
+    var firstDay = this.days[0];
 
-    for (let i = 0;  i < firstDdayNumber; i++) {
-      days.push({ day: 0, dateId: "0-" + i });
+    for (let i = firstDdayNumber ; i > 0; i--) {
+      var lastDate = new Date(firstDay);
+      lastDate.setDate(firstDay.getDate() - i);
+
+      days.push({ day: lastDate.getDate(), dateId: lastDate.toString(), isDiffMonth : true });
     }
 
-    days =  days.concat(
+    days = days.concat(
       this.days.map(x => {
         return {
           day: x.getDate(),
@@ -38,6 +44,17 @@ export default class CalendarRow extends Vue {
         };
       })
     );
+    let lastDay= this.days[this.days.length-1];
+    let lastDayNumber = lastDay.getDay();
+    let startDays = 7 - (lastDayNumber + 1);
+
+     for (let i = 1 ; i <= startDays; i++) {
+      var lastDate = new Date(lastDay);
+      lastDate.setDate(lastDate.getDate() + i);
+
+      days.push({ day: lastDate.getDate(), dateId: lastDate.toString(), isDiffMonth : true });
+    }
+
     return days;
   }
 }

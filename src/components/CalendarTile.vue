@@ -2,7 +2,7 @@
   <div class>
     <div class="is-inline-block m-b-md w-100">
       <!-- <span class=" has-text-link	 calendar-number has-text-left is-pulled-left p-xs m-t-xs" >(27)</span> -->
-      <NewActivity :dateId="dateId" :calendarNumber="calendarNumber"></NewActivity>
+      <NewActivity :dateId="dateId" :calendarNumber="calendarNumber" :isDiffMonth="isDiffMonth"></NewActivity>
     </div>
 
     <div class="columns is-centered is-multiline">
@@ -11,10 +11,10 @@
           truncateText
           :key="index"
           :activityId="activity.activityId"
-          activityColor="is-danger"
           :activityTime="activity.activityTime"
           :activityTitle="activity.activityName"
           class="m-l-lg p-t-none"
+         
         ></ActivityTag>
       </div>
       <!-- <div class="column is-12 p-t-none">
@@ -41,6 +41,7 @@ import Activity from "../Models/Activity";
 export default class CalendarTile extends Vue {
   @Prop() calendarNumber!: number;
   @Prop() dateId!: string;
+  @Prop() isDiffMonth!: boolean;
 
   constructor() {
     super();
@@ -53,6 +54,8 @@ export default class CalendarTile extends Vue {
   get twoFirstTwoTags(){
       return this.tagsByDateId.slice(0,2);
   }
+  
+ 
 }
 </script>
 <style scoped>

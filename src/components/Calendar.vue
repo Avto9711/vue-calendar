@@ -78,7 +78,5 @@ export default class Calendar extends Vue {
 </script>
 
 <style scoped>
-.border-buttom-black {
-  border-bottom: 1px solid black;
-}
+
 </style>
