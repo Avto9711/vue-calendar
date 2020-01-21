@@ -1,6 +1,6 @@
 <template>
     <div>   
-        <span @click="addNewActivity()" class="has-text-link calendar-number has-text-left is-pulled-left p-xs m-t-xs" >({{calendarNumber}})</span>
+        <span @click="openModal()" class="has-text-link calendar-number has-text-left is-pulled-left p-xs m-t-xs" >({{calendarNumber}})</span>
         <b-modal :active="isComponentModalActive"
                     has-modal-card
                     trap-focus
@@ -11,10 +11,10 @@
                             <p class="modal-card-title">Add new Activity</p>
                         </header>
                         <section class="modal-card-body">
-                            <b-field  label="Activty Name">
+                            <b-field  label="Activity name">
                                 <b-input v-model="model.activityName"></b-input>
                             </b-field>
-                                <b-field label="Select time">
+                                <b-field label="Select activity time">
                                 <b-timepicker
                                     rounded
                                     placeholder="Click to select..."
@@ -25,6 +25,7 @@
                             </b-field>
                         </section>
                         <footer class="modal-card-foot">
+                        <button type="is-primary" class="button"  @click="addNewActivity">Save</button>
                         <button class="button" type="button" @click="isComponentModalActive = false">Close</button>
                         </footer>
                     </div>
@@ -35,11 +36,17 @@
 </template>
 <script>
 import { Component, Vue } from 'vue-property-decorator';
+import {ADD_ACTIVITY, REMOVE_ACTIVITY} from "../Constants";
+import Activity from "../Models/Activity";
 
 @Component({
     props:{
         calendarNumber:{
             type:Number,
+            required:true
+        },
+        dateId:{
+            type:String,
             required:true
         }
     }
@@ -48,15 +55,19 @@ export default class NewActivity extends Vue {
     constructor(){
         super()
     }
-    model = {
-        dayId:"20208545",
-        activityName:null,
-        activityTime:null
-    }
+    model = new Activity();
     isComponentModalActive = false
 
-    addNewActivity(){
+    openModal(){
         this.isComponentModalActive = true
+
+    }
+
+    addNewActivity(){
+        this.model.dateId = this.dateId;
+        this.$store.dispatch(ADD_ACTIVITY,this.model).then(()=>{
+                this.model = new Activity();
+        });
     }
 }
 </script>

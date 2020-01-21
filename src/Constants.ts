@@ -1,2 +1,2 @@
-const AddActivity:string = "ADD_ACTIVITY";
-const RemoveActivity:string = "REMOVE_ACTIVITY";
+export const ADD_ACTIVITY:string = "ADD_ACTIVITY";
+export const REMOVE_ACTIVITY:string = "REMOVE_ACTIVITY";
