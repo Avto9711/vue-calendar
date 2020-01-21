@@ -10,6 +10,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Buefy);
 
+
 new Vue({
   router,
   store,

@@ -7,26 +7,29 @@
 
     <div class="columns is-centered is-multiline">
       <div class="column is-12 p-t-none">
-        <ActivityTag
+        <ActivityTag v-for="(activity,index) in twoFirstTwoTags"
           truncateText
+          :key="index"
+          :activityId="activity.activityId"
           activityColor="is-danger"
-          activityTime="10:AM"
-          activityTitle="Wendy's Birthdayzxzxczxczxc"
+          :activityTime="activity.activityTime"
+          :activityTitle="activity.activityName"
           class="m-l-lg p-t-none"
         ></ActivityTag>
       </div>
-      <div class="column is-12 p-t-none">
+      <!-- <div class="column is-12 p-t-none">
         <ActivityTag class="m-l-lg p-t-none" activityColor="is-danger" activityTitle="Birthday"></ActivityTag>
-      </div>
+      </div> -->
 
       <div class="column is-12">
-        <ActivityDetail></ActivityDetail>
+        <ActivityDetail v-if="tagsByDateId.length > 2" :activites="tagsByDateId" :dateId="dateId"></ActivityDetail>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import Activity from "../Models/Activity";
 
 @Component({
   components: {
@@ -41,6 +44,14 @@ export default class CalendarTile extends Vue {
 
   constructor() {
     super();
+  }
+  get tagsByDateId(){
+    return this.$store.state.activities.filter((x: Activity) => {
+        return x.dateId == this.dateId;
+    });
+  }
+  get twoFirstTwoTags(){
+      return this.tagsByDateId.slice(0,2);
   }
 }
 </script>

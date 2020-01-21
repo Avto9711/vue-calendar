@@ -17,7 +17,13 @@ export default new Vuex.Store({
         state.activities.push(activity);
         let activities:string = JSON.stringify(state.activities);
         localStorage.setItem("activities",activities);
-    }
+    },
+    [REMOVE_ACTIVITY](state:IState, activityId:number|null):void {
+      let index:number = state.activities.findIndex(x=>x.activityId ===  activityId);
+      state.activities.splice(index,1);
+      let activities:string = JSON.stringify(state.activities);
+      localStorage.setItem("activities",activities);
+  }
   },
   actions: {
     [ADD_ACTIVITY]({commit}:any, activity:Activity):Promise<any> {
@@ -25,6 +31,12 @@ export default new Vuex.Store({
         commit(ADD_ACTIVITY,activity);
         resolve();
       });
+    },
+    [REMOVE_ACTIVITY]({commit}:any, activityId:number):Promise<any> {
+       return new Promise((resolve)=> {
+            commit(REMOVE_ACTIVITY,activityId);
+            resolve();
+       });
     }
   },
   modules: {

@@ -36,7 +36,7 @@
 </template>
 <script>
 import { Component, Vue } from 'vue-property-decorator';
-import {ADD_ACTIVITY, REMOVE_ACTIVITY} from "../Constants";
+import {ADD_ACTIVITY} from "../Constants";
 import Activity from "../Models/Activity";
 
 @Component({
@@ -60,13 +60,17 @@ export default class NewActivity extends Vue {
 
     openModal(){
         this.isComponentModalActive = true
-
     }
 
     addNewActivity(){
         this.model.dateId = this.dateId;
+        this.model.activityId = new Date().toGMTString();
         this.$store.dispatch(ADD_ACTIVITY,this.model).then(()=>{
                 this.model = new Activity();
+                this.$buefy.toast.open({    
+                message: 'Activity added successfully',
+                type: 'is-success'
+            })
         });
     }
 }

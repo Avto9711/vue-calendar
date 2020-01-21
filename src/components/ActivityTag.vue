@@ -6,12 +6,16 @@
             closable
             @close="closeTag()"
             aria-close-label="Close tag">
-            {{truncateText ? activityTitle.substring(0,15) + '... '+  '- ' +  activityTime : activityTitle +" - "+ activityTime}}
+            {{truncateText ? activityTitle.substring(0,15) + '... '+  '- ' +  hourFormated  : activityTitle +" - "+ hourFormated }}
+        
         </b-tag>   
     </div>
 </template>
 <script>
 import {Component, Vue} from 'vue-property-decorator';
+import moment from 'moment';
+import {REMOVE_ACTIVITY} from "../Constants";
+
 @Component({
     props:{
         activityTitle:{
@@ -27,8 +31,12 @@ import {Component, Vue} from 'vue-property-decorator';
             default:false
         },
         activityTime:{
-            type:String,
+            type: [String, Date],
             default:"All day"
+        },
+        activityId:{
+            type:String,
+            required:true
         },
         activityType:{
             type:String,
@@ -48,11 +56,16 @@ export default class ActivityTag extends Vue  {
     }
 
     closeTag(){
-        console.log("Close tag pressed");
-            this.$buefy.toast.open({
-            message: 'Something happened correctly!',
-            type: 'is-success'
+        this.$store.dispatch(REMOVE_ACTIVITY,this.activityId).then(()=>{
+            this.$buefy.toast.open({    
+                message: 'Activity deleted successfully',
+                type: 'is-success'
+            })
         })
+    }
+
+     get hourFormated(){
+        return moment(this.activityTime).format("HH:mm");
     }
 }
 </script>

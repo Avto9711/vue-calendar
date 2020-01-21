@@ -12,9 +12,17 @@
                         <p class="modal-card-title">Activites</p>
                     </header>
                     <section class="modal-card-body">
-                            <ActivityTag class="m-t-xs" activityColor="is-danger" activityTime="10:AM" activityTitle="Wendy's Birthdayzxzxczxczxc"></ActivityTag>
-                            <ActivityTag class="m-t-xs" activityColor="is-danger" activityTime="10:AM" activityTitle="Birthday"></ActivityTag>
-                            <ActivityTag class="m-t-xs" activityColor="is-danger" activityTime="10:AM" activityTitle="Birthday"></ActivityTag>
+                            <ActivityTag 
+                            v-for="(activity,index) in activites" 
+                            :key="index" 
+                            class="m-t-xs" 
+                            :activityId="activity.activityId"
+                            activityColor="is-danger" 
+                            :activityTime="activity.activityTime" 
+                            :activityTitle="activity.activityName"></ActivityTag>
+
+                            <!-- <ActivityTag class="m-t-xs" activityColor="is-danger" activityTime="10:AM" activityTitle="Birthday"></ActivityTag>
+                            <ActivityTag class="m-t-xs" activityColor="is-danger" activityTime="10:AM" activityTitle="Birthday"></ActivityTag> -->
                     </section>
                     <footer class="modal-card-foot">
                       <button class="button" type="button" @click="closeModal()">Close</button>
@@ -33,7 +41,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
     }
 })
 export default class ActivityDetail extends Vue  {
-
+    @Prop() activites;
     isComponentModalActive = false
     constructor(){
         super()
